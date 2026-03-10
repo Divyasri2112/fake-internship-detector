@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Internship Poster Detector using Ollama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <div class="blob-bg"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="ph ph-shield-check"></i>
+                InternShield AI
+            </a>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle Dark/Light Mode">
+                    <i class="ph ph-sun"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero page-section active">
+            <div class="hero-content">
+                <div class="badge">Powered by Llama 3 via Ollama</div>
+                <h1 class="hero-title">Fake Internship <span class="gradient-text">Poster Detector</span></h1>
+                <p class="hero-subtitle">
+                    Paste the contents of an internship poster below, and our local AI model will analyze it for red flags, unrealistic salaries, and suspicious patterns to keep you safe.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tool Section -->
+        <section class="tool-section page-section active">
+            <div class="detector-container">
+                <!-- Input Area -->
+                <div class="detector-input card" id="input-area">
+                    <div class="input-header">
+                        <h3><i class="ph ph-text-t"></i> Internship Poster Content</h3>
+                    </div>
+                    
+                    <textarea id="poster-text" placeholder="Paste the internship description, requirements, company details, and offering details here..."></textarea>
+                    
+                    <div class="optional-upload mt-4">
+                        <label for="image-upload" class="upload-label btn btn-outline">
+                            <i class="ph ph-image"></i>
+                            <span>Optional: Select a Poster Image</span>
+                        </label>
+                        <input type="file" id="image-upload" accept="image/*" class="hidden">
+                        <span id="file-name" style="margin-left: 1rem; color: var(--text-secondary); font-size: 0.875rem;">No file chosen</span>
+                    </div>
+
+                    <div id="image-preview" class="image-preview hidden mt-4">
+                        <img id="preview-img" src="" alt="Preview">
+                        <button class="btn-icon remove-img" id="remove-img-btn"><i class="ph ph-x"></i></button>
+                    </div>
+
+                    <button id="analyze-btn" class="btn btn-primary w-full mt-4" disabled>
+                        <i class="ph ph-magnifying-glass"></i> Analyze Poster
+                    </button>
+                </div>
+
+                <!-- Analysis Results Area -->
+                <div class="detector-results card hidden" id="results-area">
+                    <!-- Loading State -->
+                    <div id="loading-state" class="loading-state text-center hidden">
+                        <div class="spinner"></div>
+                        <h3 id="loading-text">Analyzing deeply with Llama 3...</h3>
+                        <p class="text-secondary mt-4">This might take a few seconds depending on your hardware.</p>
+                    </div>
+
+                    <!-- Final Result State -->
+                    <div id="final-result" class="final-result hidden">
+                        <div class="result-header">
+                            <div class="verdict-icon-container" id="verdict-icon">
+                                <i class="ph ph-info"></i>
+                            </div>
+                            <h2 id="verdict-title">Analysis Complete</h2>
+                        </div>
+
+                        <div class="result-details">
+                            <h3>Llama 3 Findings</h3>
+                            <div id="ai-response-content" class="markdown-body">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <button class="btn btn-outline w-full mt-4" id="reset-btn">Scan Another Poster</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
